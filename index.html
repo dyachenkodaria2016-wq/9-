@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#5146b8">
+<title>Бази даних — інтерактивний тренажер</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="registration" class="gate">
+  <section class="register-card">
+    <div class="brand-mark">▦</div>
+    <p class="eyebrow">ІНФОРМАТИКА · 9 КЛАС</p>
+    <h1>Бази даних та Microsoft Access</h1>
+    <p class="muted">Інтерактивний навчально-контрольний тренажер</p>
+    <form id="registerForm">
+      <div class="form-grid">
+        <label>Прізвище *<input id="surname" required autocomplete="family-name"></label>
+        <label>Ім’я *<input id="givenName" required autocomplete="given-name"></label>
+        <label>По батькові<input id="patronymic"></label>
+        <label>Клас *<input id="className" required placeholder="9-А"></label>
+        <label class="wide">Навчальний заклад<input id="school"></label>
+      </div>
+      <button class="primary full" type="submit">Розпочати роботу <span>→</span></button>
+    </form>
+    <div id="previousSessions" class="previous"></div>
+    <p class="tiny">Ваші результати зберігаються локально у цьому браузері.</p>
+  </section>
+</div>
+
+<div id="app" class="hidden">
+<header class="topbar">
+  <a class="brand" href="#" aria-label="На головну"><span class="brand-mark small">▦</span><span>Access<span class="brand-light">Trainer</span></span></a>
+  <div class="user-chip" id="userChip"></div>
+  <button class="icon-btn" id="teacherOpen" title="Режим учителя">♙ Учитель</button>
+  <button class="icon-btn" id="newAttempt">＋ Нова спроба</button>
+</header>
+<div class="layout">
+<aside class="sidebar">
+  <div class="side-label">НАВЧАЛЬНИЙ МАРШРУТ</div>
+  <nav id="moduleNav"></nav>
+  <div class="side-progress"><div class="progress-head"><span>Загальний прогрес</span><b id="sidePercent">0%</b></div><div class="progress"><i id="sideProgress"></i></div></div>
+  <button class="side-link" id="resetBtn">↻ Скинути поточну спробу</button>
+</aside>
+<main class="main">
+  <section class="welcome-row">
+    <div><p class="eyebrow">НАВЧАЙСЯ · ТРЕНУЙСЯ · ПЕРЕВІРЯЙ СЕБЕ</p><h1 id="moduleTitle">Основи баз даних</h1><p id="moduleDesc" class="muted">Розпочнімо знайомство з базами даних.</p></div>
+    <div class="score-card"><span>Поточний результат</span><strong id="score">0/25</strong><small id="grade">Оцінка: —</small></div>
+  </section>
+  <section class="stats-strip">
+    <div><span>Вправа</span><b id="exerciseNo">1 / 25</b></div>
+    <div><span>Виконано</span><b id="doneCount">0</b></div>
+    <div><span>Спроб</span><b id="attemptCount">0</b></div>
+    <div><span>Час роботи</span><b id="totalTime">00:00</b></div>
+  </section>
+  <section id="exercisePanel" class="exercise-card"></section>
+  <section class="bottom-actions">
+    <button class="secondary" id="prevBtn">← Попереднє</button>
+    <div class="action-right"><button class="ghost" id="hintBtn">◎ Підказка</button><button class="primary" id="checkBtn">Перевірити</button><button class="secondary" id="nextBtn">Наступне →</button></div>
+  </section>
+  <section class="report-short">
+    <div><b>Підсумки та звіт</b><p class="muted">Переглянь статистику в будь-який момент і збережи її у PDF.</p></div>
+    <div class="report-buttons"><button class="secondary" id="reportPreview">Попередній перегляд</button><button class="primary" id="reportPdf">Сформувати та завантажити звіт PDF</button><button class="ghost" id="exportJson">Експорт JSON</button></div>
+  </section>
+</main>
+</div>
+</div>
+
+<div id="teacherModal" class="modal hidden">
+ <div class="modal-card wide-modal"><button class="close" id="teacherClose">×</button><p class="eyebrow">ПАНЕЛЬ УЧИТЕЛЯ</p><h2>Результати учасників</h2>
+ <div id="teacherContent"></div>
+ <div class="toolbar"><button class="secondary" id="exportAll">Експорт усіх JSON</button><label class="secondary file-label">Імпорт JSON<input type="file" id="importJson" accept=".json,application/json"></label><button class="secondary" id="exportCsv">Експорт CSV</button></div>
+ <p class="tiny">Пароль у статичному сайті є лише бар’єром від випадкового доступу, а не справжньою автентифікацією. Для захисту потрібен сервер.</p></div>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+</body></html>
